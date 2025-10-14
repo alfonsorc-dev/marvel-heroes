@@ -26,3 +26,7 @@ dist-ssr
 # Prettier
 .prettierrc
 .prettierignore
+
+# Environment variables
+.env
+.env.production
