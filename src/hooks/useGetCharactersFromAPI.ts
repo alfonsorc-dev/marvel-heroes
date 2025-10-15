@@ -31,6 +31,9 @@ export const useGetCharactersFromAPI = (
       if (!res.ok) throw new Error(`Failed to fetch: ${res.statusText}`);
       return res.json();
     },
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    staleTime: 1000 * 60 * 5,
     ...queryOptions,
   });
 
