@@ -30,6 +30,7 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
           type="text"
           placeholder="SEARCH A CHARACTER..."
           className="search-bar__input"
+          aria-label="Search input"
         ></input>
       </form>
     </div>

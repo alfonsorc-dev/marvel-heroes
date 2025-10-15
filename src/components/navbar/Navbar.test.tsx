@@ -44,8 +44,12 @@ describe("Navbar", () => {
     };
     renderComponent(mockContextValue);
 
-    expect(screen.getByAltText("Marvel brand logo")).toBeInTheDocument();
-    expect(screen.getByAltText("Heart icon")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Marvel brand logo/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /Heart icon/i })
+    ).toBeInTheDocument();
     const favoriteCount = screen.getByTestId("favorite-count");
     expect(favoriteCount).toBeInTheDocument();
     expect(favoriteCount).toHaveTextContent("3");
