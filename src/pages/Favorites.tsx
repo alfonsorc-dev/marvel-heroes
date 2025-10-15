@@ -4,7 +4,7 @@ import useFavorites from "@/context/FavoritesContext";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useMemo } from "react";
 import "@/styles/common.scss";
-import { CardsContainer } from "@/components/cards-container/CardsContainer";
+import { CardsGrid } from "@/components/cards-grid/CardsGrid";
 import { CharacterCard } from "@/components/character-card/CharacterCard";
 import type { Character } from "@/models/Character";
 import { sortCharactersByName } from "@/utils/characters.utils";
@@ -33,7 +33,7 @@ export default function Favorites() {
       <div className="searchbar-fixed">
         <SearchBar onChange={setQuery} />
       </div>
-      <CardsContainer>
+      <CardsGrid>
         {characters.map((character) => {
           return (
             <CharacterCard
@@ -45,7 +45,7 @@ export default function Favorites() {
             />
           );
         })}
-      </CardsContainer>
+      </CardsGrid>
     </div>
   );
 }

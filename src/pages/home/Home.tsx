@@ -6,7 +6,7 @@ import { useState, useMemo } from "react";
 import "@/styles/common.scss";
 import useFavorites from "@/context/FavoritesContext";
 import { CharacterCard } from "@/components/character-card/CharacterCard";
-import { CardsContainer } from "@/components/cards-container/CardsContainer";
+import { CardsGrid } from "@/components/cards-grid/CardsGrid";
 import { apiCharacterToCharacter } from "@/adapters/character.adapter";
 import type { Character } from "@/models/Character";
 
@@ -38,7 +38,7 @@ export default function Home() {
       <div className="searchbar-fixed">
         <SearchBar onChange={(value) => setQuery(value ?? "")} />
       </div>
-      <CardsContainer>
+      <CardsGrid>
         {characters.map((character) => {
           const isFavorite = !!favorites?.find(
             (fav) => fav.id === character.id
@@ -56,7 +56,7 @@ export default function Home() {
             />
           );
         })}
-      </CardsContainer>
+      </CardsGrid>
     </>
   );
 }
