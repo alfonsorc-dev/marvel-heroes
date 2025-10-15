@@ -7,6 +7,7 @@ import "@/styles/common.scss";
 import { CardsContainer } from "@/components/cards-container/CardsContainer";
 import { CharacterCard } from "@/components/character-card/CharacterCard";
 import type { Character } from "@/models/Character";
+import { sortCharactersByName } from "@/utils/sort-characters.utils";
 
 export default function Favorites() {
   const [query, setQuery] = useState<string | null>(null);
@@ -20,7 +21,7 @@ export default function Favorites() {
         char.name.toLowerCase().includes(debouncedQuery.toLowerCase())
       );
     }
-    return favorites;
+    return sortCharactersByName(favorites);
   }, [debouncedQuery, favorites]);
 
   const handleFavoriteToggle = (characterId: number) => {
