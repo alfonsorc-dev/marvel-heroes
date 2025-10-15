@@ -1,6 +1,6 @@
 .searchbar-fixed {
   position: fixed;
-  padding-top: 48px;
+  padding: 48px 48px 0 48px;
   top: var(--navbar-height);
   background: white;
   width: 100%;
@@ -8,4 +8,15 @@
   @media (max-width: 640px) {
     padding-top: 24px;
   }
+}
+
+.unstyled-button {
+  background-color: inherit;
+  color: white;
+  border: none;
+  padding: unset;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-align: left;
 }

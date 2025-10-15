@@ -1,0 +1,31 @@
+.character-card {
+  min-height: 245px;
+  width: 200px;
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    background-color: #000000;
+
+    .character-name {
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    padding: 16px;
+  }
+
+  .ruler {
+    border-top: solid 5px var(--marvel-red);
+  }
+
+  @media (max-width: 1024px) {
+    width: 180px;
+  }
+}

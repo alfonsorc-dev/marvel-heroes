@@ -26,7 +26,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  // CSS Variables
   --navbar-height: 84px;
+  --card-image-width: 180px;
+  --card-image-height: 180px;
+  --card-image-width-desktop: 200px;
+  --card-image-height-desktop: 200px;
+
+  --marvel-red: #ec1d24;
 }
 
 body {

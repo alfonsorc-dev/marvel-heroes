@@ -1,0 +1,17 @@
+.cards-container {
+  padding: 0 48px;
+  margin-top: 233px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: auto;
+  gap: 16px;
+  justify-items: center;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    margin-top: 209px;
+  }
+}

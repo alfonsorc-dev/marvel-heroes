@@ -5,10 +5,13 @@ import useGetCharacters from "@/hooks/useGetCharacters";
 import type { CharactersData } from "@/models/api/GetCharactersResponse.model";
 import { useState, useMemo } from "react";
 import "@/styles/common.scss";
+import useGetFavorites from "@/context/FavoritesContext";
+import { CharacterCard } from "@/components/character-card/CharacterCard";
+import { CardsContainer } from "@/components/cards-container/CardsContainer";
 
 export default function Home() {
-  const [query, setQuery] = useState<string | null>(null);
-  const debouncedQuery = useDebounce(query ?? "", DEBOUNCE_TIME);
+  const [query, setQuery] = useState<string>("");
+  const debouncedQuery = useDebounce(query, DEBOUNCE_TIME);
 
   const { data } = useGetCharacters({
     ...(debouncedQuery ? { nameStartsWith: debouncedQuery } : {}),
@@ -20,12 +23,45 @@ export default function Home() {
       : [];
   }, [data]);
 
+  const { favoriteIds, addFavoriteId, removeFavoriteId } = useGetFavorites();
+
+  const handleSearchSubmit = (value: string | null) => {
+    setQuery(value ?? "");
+  };
+
+  const handleSearchChange = (value: string | null) => {
+    setQuery(value ?? "");
+  };
+
+  const handleFavoriteToggle = (characterId: string, isFavorite: boolean) => {
+    (isFavorite ? removeFavoriteId : addFavoriteId)(characterId);
+  };
+
   return (
     <>
       <div className="searchbar-fixed">
-        <SearchBar onSubmit={setQuery} onChange={setQuery} />
+        <SearchBar
+          onSubmit={handleSearchSubmit}
+          onChange={handleSearchChange}
+        />
       </div>
-      {JSON.stringify(characters)}
+      <CardsContainer>
+        {characters.map((character) => {
+          const isFavorite =
+            favoriteIds?.includes(character.id.toString()) ?? false;
+          return (
+            <CharacterCard
+              key={character.id}
+              name={character.name}
+              thumbnail={character.thumbnail}
+              isFavorite={isFavorite}
+              onFavoriteToggle={() =>
+                handleFavoriteToggle(character.id.toString(), isFavorite)
+              }
+            />
+          );
+        })}
+      </CardsContainer>
     </>
   );
 }
