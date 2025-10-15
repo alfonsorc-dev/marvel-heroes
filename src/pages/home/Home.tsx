@@ -14,6 +14,7 @@ export default function Home() {
   const debouncedQuery = useDebounce(query, DEBOUNCE_TIME);
 
   const { data } = useGetCharacters({
+    limit: RESULTS_LIMIT,
     ...(debouncedQuery ? { nameStartsWith: debouncedQuery } : {}),
   });
 
