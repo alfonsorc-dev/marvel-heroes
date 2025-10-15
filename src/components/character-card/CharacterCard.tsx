@@ -34,7 +34,7 @@ export const CharacterCard = ({
         <button className="unstyled-button" onClick={onFavoriteToggle}>
           <img
             src={isFavorite ? filledHeart : outlinedHeart}
-            alt="Heart icon"
+            alt={isFavorite ? "Filled Heart Icon" : "Outlined Heart icon"}
           />
         </button>
       </div>
