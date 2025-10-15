@@ -7,6 +7,7 @@
     display: block;
   }
   &__info {
+    padding: 16px;
     display: flex;
     justify-content: space-between;
     color: #fff;
@@ -18,7 +19,13 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    padding: 16px;
+    clip-path: polygon(
+      0 0,
+      /* top-left */ 100% 0,
+      /* top-right */ 100% 86%,
+      /* near bottom-right */ 86% 100%,
+      /* inward diagonal cut */ 0 100% /* bottom-left */
+    );
   }
 
   .ruler {
