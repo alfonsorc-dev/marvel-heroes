@@ -38,7 +38,7 @@ export default function Favorites() {
   return (
     <div className="search-page-container">
       <div className="searchbar-fixed">
-        <SearchBar onSubmit={setQuery} onChange={setQuery} />
+        <SearchBar onChange={setQuery} />
       </div>
       <CardsContainer>
         {characters.map((character) => {
