@@ -1,12 +1,26 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
-export interface FavoritesContextType {
-  favoriteCharacterIds: string[];
+export type FavoritesContextType = {
+  favoriteIds: string[];
   addFavoriteId: (id: string) => void;
   removeFavoriteId: (id: string) => void;
   clearFavorites: () => void;
-}
+};
 
-export const FavoritesContext = createContext<FavoritesContextType | undefined>(
-  undefined
+export const FavoritesContext = createContext<FavoritesContextType | null>(
+  null
 );
+
+const useGetFavorites = (): FavoritesContextType => {
+  const favoritesContext = useContext(FavoritesContext);
+
+  if (!favoritesContext) {
+    throw new Error(
+      "useGetFavorites must be used within a FavoritesContextProvider"
+    );
+  }
+
+  return favoritesContext;
+};
+
+export default useGetFavorites;

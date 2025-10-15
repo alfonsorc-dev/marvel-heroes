@@ -24,7 +24,7 @@ describe("Navbar", () => {
 
   it("renders correctly and displays the number of favorite characters", () => {
     const mockContextValue: FavoritesContextType = {
-      favoriteCharacterIds: ["1", "2", "3"],
+      favoriteIds: ["1", "2", "3"],
       addFavoriteId: (_: string) => {},
       removeFavoriteId: (_: string) => {},
       clearFavorites: () => {},
@@ -40,7 +40,7 @@ describe("Navbar", () => {
 
   it("doesn't display any number when there are no favorites", () => {
     const mockContextValue: FavoritesContextType = {
-      favoriteCharacterIds: [],
+      favoriteIds: [],
       addFavoriteId: (_: string) => {},
       removeFavoriteId: (_: string) => {},
       clearFavorites: () => {},

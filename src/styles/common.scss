@@ -1,0 +1,11 @@
+.searchbar-fixed {
+  position: fixed;
+  padding-top: 48px;
+  top: var(--navbar-height);
+  background: white;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    padding-top: 24px;
+  }
+}

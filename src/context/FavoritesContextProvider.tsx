@@ -6,7 +6,7 @@ export const FavoritesContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [favoriteCharacterIds, setItems] = useState<string[]>([]);
+  const [favoriteIds, setItems] = useState<string[]>([]);
 
   const addFavoriteId = (id: string) => setItems((prev) => [...prev, id]);
   const removeFavoriteId = (id: string) =>
@@ -16,7 +16,7 @@ export const FavoritesContextProvider = ({
   return (
     <FavoritesContext.Provider
       value={{
-        favoriteCharacterIds,
+        favoriteIds,
         addFavoriteId,
         removeFavoriteId,
         clearFavorites,
