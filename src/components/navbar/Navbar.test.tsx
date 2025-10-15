@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { render, screen, cleanup } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
-import Navbar from "./Navbar";
 import { BrowserRouter } from "react-router-dom";
 import {
   FavoritesContext,
   type FavoritesContextType,
 } from "@/context/FavoritesContext";
+import Navbar from "./Navbar";
+
 const renderComponent = (contextValue: FavoritesContextType) => {
   return render(
     <FavoritesContext.Provider value={contextValue}>
@@ -23,11 +24,23 @@ describe("Navbar", () => {
   });
 
   it("renders correctly and displays the number of favorite characters", () => {
+    const mockFavorites = [
+      {
+        id: 1,
+        name: "Iron Man",
+        thumbnail: { path: "path1", extension: "jpg" },
+      },
+      {
+        id: 2,
+        name: "Captain America",
+        thumbnail: { path: "path2", extension: "jpg" },
+      },
+      { id: 3, name: "Thor", thumbnail: { path: "path3", extension: "jpg" } },
+    ];
     const mockContextValue: FavoritesContextType = {
-      favoriteIds: ["1", "2", "3"],
-      addFavoriteId: (_: string) => {},
-      removeFavoriteId: (_: string) => {},
-      clearFavorites: () => {},
+      favorites: mockFavorites,
+      addFavorite: (_character) => {},
+      removeFavorite: (_id) => {},
     };
     renderComponent(mockContextValue);
 
@@ -40,10 +53,9 @@ describe("Navbar", () => {
 
   it("doesn't display any number when there are no favorites", () => {
     const mockContextValue: FavoritesContextType = {
-      favoriteIds: [],
-      addFavoriteId: (_: string) => {},
-      removeFavoriteId: (_: string) => {},
-      clearFavorites: () => {},
+      favorites: [],
+      addFavorite: (_character) => {},
+      removeFavorite: (_id) => {},
     };
     renderComponent(mockContextValue);
 

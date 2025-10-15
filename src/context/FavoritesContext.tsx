@@ -1,17 +1,17 @@
+import type { Character } from "@/models/Character";
 import { createContext, useContext } from "react";
 
 export type FavoritesContextType = {
-  favoriteIds: string[];
-  addFavoriteId: (id: string) => void;
-  removeFavoriteId: (id: string) => void;
-  clearFavorites: () => void;
+  favorites: Character[];
+  addFavorite: (character: Character) => void;
+  removeFavorite: (id: number) => void;
 };
 
 export const FavoritesContext = createContext<FavoritesContextType | null>(
   null
 );
 
-const useGetFavorites = (): FavoritesContextType => {
+const useFavorites = (): FavoritesContextType => {
   const favoritesContext = useContext(FavoritesContext);
 
   if (!favoritesContext) {
@@ -23,4 +23,4 @@ const useGetFavorites = (): FavoritesContextType => {
   return favoritesContext;
 };
 
-export default useGetFavorites;
+export default useFavorites;

@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/marvel-logo.svg";
 import heartIcon from "@/assets/heart.svg";
 import "./Navbar.scss";
-import useGetFavorites from "@/context/FavoritesContext";
+import useFavorites from "@/context/FavoritesContext";
 
 function Navbar() {
-  const { favoriteIds } = useGetFavorites();
+  const { favorites } = useFavorites();
 
   return (
     <nav className="navbar">
@@ -16,8 +16,8 @@ function Navbar() {
       <div>
         <Link to="/favorites" className="navbar__favorites">
           <img src={heartIcon} alt="Heart icon" />
-          {favoriteIds?.length > 0 && (
-            <span data-testid="favorite-count">{favoriteIds.length}</span>
+          {favorites?.length > 0 && (
+            <span data-testid="favorite-count">{favorites.length}</span>
           )}
         </Link>
       </div>

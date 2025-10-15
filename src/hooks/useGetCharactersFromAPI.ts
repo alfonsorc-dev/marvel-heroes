@@ -6,7 +6,7 @@ interface UseMarvelCharactersOptions {
   nameStartsWith?: string;
 }
 
-export const useGetCharacters = (
+export const useGetCharactersFromAPI = (
   { limit, nameStartsWith }: UseMarvelCharactersOptions,
   queryOptions?: Omit<
     UseQueryOptions<MarvelCharacterResponse>,
@@ -41,4 +41,4 @@ export const useGetCharacters = (
   };
 };
 
-export default useGetCharacters;
+export default useGetCharactersFromAPI;

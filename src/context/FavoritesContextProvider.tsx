@@ -1,25 +1,31 @@
 import { useState, type ReactNode } from "react";
 import { FavoritesContext } from "./FavoritesContext";
+import type { Character } from "@/models/Character";
 
 export const FavoritesContextProvider = ({
   children,
 }: {
   children: ReactNode;
 }) => {
-  const [favoriteIds, setItems] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<Character[]>([]);
 
-  const addFavoriteId = (id: string) => setItems((prev) => [...prev, id]);
-  const removeFavoriteId = (id: string) =>
-    setItems((prev) => prev.filter((i) => i !== id));
-  const clearFavorites = () => setItems([]);
+  const addFavorite = (character: Character) =>
+    setFavorites((prev) => {
+      const currentFavoritesMap = new Map(prev.map((item) => [item.id, item]));
+      currentFavoritesMap.set(character.id, character);
+      return Array.from(currentFavoritesMap.values());
+    });
+
+  const removeFavorite = (id: number) => {
+    setFavorites((prev) => prev.filter((character) => character.id === id));
+  };
 
   return (
     <FavoritesContext.Provider
       value={{
-        favoriteIds,
-        addFavoriteId,
-        removeFavoriteId,
-        clearFavorites,
+        favorites,
+        addFavorite,
+        removeFavorite,
       }}
     >
       {children}

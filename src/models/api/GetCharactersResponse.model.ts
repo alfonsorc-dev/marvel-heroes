@@ -13,15 +13,15 @@ export interface CharactersData {
   limit: number;
   total: number;
   count: number;
-  results: Character[];
+  results: APICharacter[];
 }
 
-export interface Character {
+export interface APICharacter {
   id: number;
   name: string;
   description: string;
   modified: string;
-  thumbnail: Image;
+  thumbnail: APIImage;
   resourceURI: string;
   comics: ComicList;
   series: SeriesList;
@@ -30,7 +30,7 @@ export interface Character {
   urls: Url[];
 }
 
-export interface Image {
+export interface APIImage {
   path: string;
   extension: string;
 }

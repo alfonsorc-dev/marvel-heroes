@@ -1,33 +1,36 @@
 import SearchBar from "@/components/search-bar/SearchBar";
 import { DEBOUNCE_TIME, RESULTS_LIMIT } from "@/constants/search.const";
 import useDebounce from "@/hooks/useDebounce";
-import useGetCharacters from "@/hooks/useGetCharacters";
-import type { CharactersData } from "@/models/api/GetCharactersResponse.model";
+import useGetCharactersFromAPI from "@/hooks/useGetCharactersFromAPI";
 import { useState, useMemo } from "react";
 import "@/styles/common.scss";
-import useGetFavorites from "@/context/FavoritesContext";
+import useFavorites from "@/context/FavoritesContext";
 import { CharacterCard } from "@/components/character-card/CharacterCard";
 import { CardsContainer } from "@/components/cards-container/CardsContainer";
+import { apiCharacterToCharacter } from "@/adapters/character.adapter";
+import type { Character } from "@/models/Character";
 
 export default function Home() {
   const [query, setQuery] = useState<string>("");
   const debouncedQuery = useDebounce(query, DEBOUNCE_TIME);
 
-  const { data } = useGetCharacters({
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+
+  const { data } = useGetCharactersFromAPI({
     limit: RESULTS_LIMIT,
     ...(debouncedQuery ? { nameStartsWith: debouncedQuery } : {}),
   });
 
-  const characters: CharactersData["results"] = useMemo(() => {
+  const characters: Character[] = useMemo(() => {
     return data && "results" in data
-      ? data.results.slice(0, RESULTS_LIMIT)
+      ? data.results
+          .slice(0, RESULTS_LIMIT)
+          .map((character) => apiCharacterToCharacter(character))
       : [];
   }, [data]);
 
-  const { favoriteIds, addFavoriteId, removeFavoriteId } = useGetFavorites();
-
-  const handleFavoriteToggle = (characterId: string, isFavorite: boolean) => {
-    (isFavorite ? removeFavoriteId : addFavoriteId)(characterId);
+  const handleFavoriteToggle = (character: Character, isFavorite: boolean) => {
+    return isFavorite ? removeFavorite(character.id) : addFavorite(character);
   };
 
   return (
@@ -37,8 +40,10 @@ export default function Home() {
       </div>
       <CardsContainer>
         {characters.map((character) => {
-          const isFavorite =
-            favoriteIds?.includes(character.id.toString()) ?? false;
+          const isFavorite = !!favorites?.find(
+            (fav) => fav.id === character.id
+          );
+
           return (
             <CharacterCard
               key={character.id}
@@ -46,7 +51,7 @@ export default function Home() {
               thumbnail={character.thumbnail}
               isFavorite={isFavorite}
               onFavoriteToggle={() =>
-                handleFavoriteToggle(character.id.toString(), isFavorite)
+                handleFavoriteToggle(character, isFavorite)
               }
             />
           );
