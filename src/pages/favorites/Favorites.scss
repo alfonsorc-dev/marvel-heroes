@@ -1,0 +1,38 @@
+@use "@/styles/variables" as *;
+
+.favorites {
+  &__fixed-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: fixed;
+    padding: 48px 48px 0 48px;
+    z-index: 1000;
+    top: $navbar-height;
+    background: white;
+    width: 100%;
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media (max-width: 640px) {
+      padding-top: 24px;
+    }
+  }
+
+  &__characters-grid {
+    margin-top: calc(
+      $navbar-height + $favorites-fixed-content-height + $page-vertical-gap
+    );
+    @media (max-width: 640px) {
+      margin-top: calc(
+        $navbar-height + $favorites-fixed-content-height-mobile +
+          $page-vertical-gap
+      );
+    }
+  }
+}

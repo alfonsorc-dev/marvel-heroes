@@ -1,0 +1,26 @@
+@use "@/styles/variables" as *;
+
+.home {
+  &__fixed-content {
+    position: fixed;
+    padding: 48px 48px 0 48px;
+    z-index: 1000;
+    top: $navbar-height;
+    background: white;
+    width: 100%;
+
+    @media (max-width: 640px) {
+      padding-top: 24px;
+    }
+  }
+  &__characters-grid {
+    margin-top: calc(
+      $navbar-height + $home-fixed-content-height + $page-vertical-gap
+    );
+    @media (max-width: 640px) {
+      margin-top: calc(
+        $navbar-height + $home-fixed-content-height-mobile + $page-vertical-gap
+      );
+    }
+  }
+}

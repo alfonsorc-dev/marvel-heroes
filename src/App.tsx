@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Favorites from "@/pages/Favorites";
+import Favorites from "@/pages/favorites/Favorites";
 import Details from "@/pages/Details";
 import "./App.scss";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

@@ -9,6 +9,7 @@ import { CharacterCard } from "@/components/character-card/CharacterCard";
 import { CardsGrid } from "@/components/cards-grid/CardsGrid";
 import { apiCharacterToCharacter } from "@/adapters/character.adapter";
 import type { Character } from "@/models/Character";
+import "./Home.scss";
 
 export default function Home() {
   const [query, setQuery] = useState<string>("");
@@ -34,14 +35,14 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <section role="search" className="searchbar-fixed">
+    <main className="home">
+      <section role="search" className="home__fixed-content">
         <SearchBar
           resultsCount={isLoading ? undefined : characters.length}
           onChange={(value) => setQuery(value ?? "")}
         />
       </section>
-      <section aria-label="Characters List">
+      <section aria-label="Characters List" className="home__characters-grid">
         <CardsGrid>
           {characters.map((character) => {
             const isFavorite = !!favorites?.find(

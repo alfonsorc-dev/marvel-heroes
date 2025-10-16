@@ -8,6 +8,7 @@ import { CardsGrid } from "@/components/cards-grid/CardsGrid";
 import { CharacterCard } from "@/components/character-card/CharacterCard";
 import type { Character } from "@/models/Character";
 import { sortCharactersByName } from "@/utils/characters.utils";
+import "./Favorites.scss";
 
 export default function Favorites() {
   const [query, setQuery] = useState<string | null>(null);
@@ -29,13 +30,18 @@ export default function Favorites() {
   };
 
   return (
-    <main className="search-page-container">
-      <section role="search">
-        <div className="searchbar-fixed">
+    <main className="favorites">
+      <div className="favorites__fixed-content">
+        <h2 className="title">FAVORITES</h2>
+        <section role="search">
           <SearchBar resultsCount={characters.length} onChange={setQuery} />
-        </div>
-      </section>
-      <section aria-label="Favorites List">
+        </section>
+      </div>
+
+      <section
+        aria-label="Favorites List"
+        className="favorites__characters-grid"
+      >
         <CardsGrid>
           {characters.map((character) => {
             return (
