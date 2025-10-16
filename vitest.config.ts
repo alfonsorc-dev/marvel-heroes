@@ -8,6 +8,7 @@ export default mergeConfig(baseConfig, {
     coverage: {
       provider: "v8",
       include: ["src/**/*.{ts,tsx}"],
+      exclude: ["src/main.tsx"],
       all: true,
       reporter: ["text", "json", "html"],
     },
