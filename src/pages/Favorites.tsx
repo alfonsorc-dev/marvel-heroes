@@ -31,7 +31,7 @@ export default function Favorites() {
   return (
     <div className="search-page-container">
       <div className="searchbar-fixed">
-        <SearchBar onChange={setQuery} />
+        <SearchBar resultsCount={characters.length} onChange={setQuery} />
       </div>
       <CardsGrid>
         {characters.map((character) => {

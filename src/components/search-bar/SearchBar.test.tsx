@@ -6,8 +6,8 @@ import userEvent from "@testing-library/user-event";
 
 const mockOnSearch = vi.fn();
 
-const renderContent = () => {
-  render(<SearchBar onChange={mockOnSearch} />);
+const renderContent = (resultsCount?: number) => {
+  render(<SearchBar resultsCount={resultsCount} onChange={mockOnSearch} />);
 };
 
 describe("SearchBar", () => {
@@ -43,5 +43,25 @@ describe("SearchBar", () => {
 
     expect(mockOnSearch).toHaveBeenCalledTimes(10);
     expect(mockOnSearch).toHaveBeenLastCalledWith("Spider-Man");
+  });
+
+  it("displays the correct results count message when there is one result", () => {
+    renderContent(1);
+    expect(screen.getByRole("status")).toHaveTextContent("1 result found");
+  });
+
+  it("displays the correct results count message for multiple results", () => {
+    renderContent(5);
+    expect(screen.getByRole("status")).toHaveTextContent("5 results found");
+  });
+
+  it("displays '0 results found' when there are no results", () => {
+    renderContent(0);
+    expect(screen.getByRole("status")).toHaveTextContent("0 results found");
+  });
+
+  it("does not display any results count message when resultsCount is undefined", () => {
+    renderContent(undefined);
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
   });
 });

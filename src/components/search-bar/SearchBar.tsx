@@ -1,12 +1,13 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import "./SearchBar.scss";
 import searchIcon from "@/assets/magnifying-glass.svg";
 
 export type SearchBarProps = {
+  resultsCount: number | undefined;
   onChange: (value: string | null) => void;
 };
 
-const SearchBar = ({ onChange }: SearchBarProps) => {
+const SearchBar = ({ onChange, resultsCount }: SearchBarProps) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const getFormValue = (event: React.ChangeEvent<HTMLFormElement>) => {
@@ -18,6 +19,11 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
     const query = getFormValue(event);
     onChange(query as string | null);
   };
+
+  const resultsCountMsg: string | undefined = useMemo(() => {
+    if (resultsCount === undefined) return;
+    return `${resultsCount ?? 0} result${resultsCount === 1 ? "" : "s"} found`;
+  }, [resultsCount]);
 
   return (
     <div className="search-bar">
@@ -33,6 +39,9 @@ const SearchBar = ({ onChange }: SearchBarProps) => {
           aria-label="Search input"
         ></input>
       </form>
+      <div role="status" className="search-bar__results-count">
+        {resultsCountMsg}
+      </div>
     </div>
   );
 };

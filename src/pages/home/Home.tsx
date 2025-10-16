@@ -16,7 +16,7 @@ export default function Home() {
 
   const { favorites, addFavorite, removeFavorite } = useFavorites();
 
-  const { data } = useGetCharactersFromAPI({
+  const { data, isLoading } = useGetCharactersFromAPI({
     limit: RESULTS_LIMIT,
     ...(debouncedQuery ? { nameStartsWith: debouncedQuery } : {}),
   });
@@ -36,7 +36,10 @@ export default function Home() {
   return (
     <>
       <div className="searchbar-fixed">
-        <SearchBar onChange={(value) => setQuery(value ?? "")} />
+        <SearchBar
+          resultsCount={isLoading ? undefined : characters.length}
+          onChange={(value) => setQuery(value ?? "")}
+        />
       </div>
       <CardsGrid>
         {characters.map((character) => {
