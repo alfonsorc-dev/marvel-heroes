@@ -7,8 +7,8 @@ export type FavoritesContextType = {
   removeFavorite: (id: number) => void;
 };
 
-export const FavoritesContext = createContext<FavoritesContextType | null>(
-  null
+export const FavoritesContext = createContext<FavoritesContextType | undefined>(
+  undefined
 );
 
 const useFavorites = (): FavoritesContextType => {
