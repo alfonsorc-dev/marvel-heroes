@@ -5,12 +5,10 @@ import "./Layout.scss";
 export default function Layout() {
   return (
     <>
-      <header>
+      <header className="page-header">
         <Navbar />
       </header>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </>
   );
 }

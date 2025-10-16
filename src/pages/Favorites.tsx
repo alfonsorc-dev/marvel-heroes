@@ -29,23 +29,27 @@ export default function Favorites() {
   };
 
   return (
-    <div className="search-page-container">
-      <div className="searchbar-fixed">
-        <SearchBar resultsCount={characters.length} onChange={setQuery} />
-      </div>
-      <CardsGrid>
-        {characters.map((character) => {
-          return (
-            <CharacterCard
-              key={character.id}
-              name={character.name}
-              thumbnail={character.thumbnail}
-              onFavoriteToggle={() => handleFavoriteToggle(character.id)}
-              isFavorite
-            />
-          );
-        })}
-      </CardsGrid>
-    </div>
+    <main className="search-page-container">
+      <section role="search">
+        <div className="searchbar-fixed">
+          <SearchBar resultsCount={characters.length} onChange={setQuery} />
+        </div>
+      </section>
+      <section aria-label="Favorites List">
+        <CardsGrid>
+          {characters.map((character) => {
+            return (
+              <CharacterCard
+                key={character.id}
+                name={character.name}
+                thumbnail={character.thumbnail}
+                onFavoriteToggle={() => handleFavoriteToggle(character.id)}
+                isFavorite
+              />
+            );
+          })}
+        </CardsGrid>
+      </section>
+    </main>
   );
 }

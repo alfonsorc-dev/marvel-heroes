@@ -34,32 +34,34 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="searchbar-fixed">
+    <main>
+      <section role="search" className="searchbar-fixed">
         <SearchBar
           resultsCount={isLoading ? undefined : characters.length}
           onChange={(value) => setQuery(value ?? "")}
         />
-      </div>
-      <CardsGrid>
-        {characters.map((character) => {
-          const isFavorite = !!favorites?.find(
-            (fav) => fav.id === character.id
-          );
+      </section>
+      <section aria-label="Characters List">
+        <CardsGrid>
+          {characters.map((character) => {
+            const isFavorite = !!favorites?.find(
+              (fav) => fav.id === character.id
+            );
 
-          return (
-            <CharacterCard
-              key={character.id}
-              name={character.name}
-              thumbnail={character.thumbnail}
-              isFavorite={isFavorite}
-              onFavoriteToggle={() =>
-                handleFavoriteToggle(character, isFavorite)
-              }
-            />
-          );
-        })}
-      </CardsGrid>
-    </>
+            return (
+              <CharacterCard
+                key={character.id}
+                name={character.name}
+                thumbnail={character.thumbnail}
+                isFavorite={isFavorite}
+                onFavoriteToggle={() =>
+                  handleFavoriteToggle(character, isFavorite)
+                }
+              />
+            );
+          })}
+        </CardsGrid>
+      </section>
+    </main>
   );
 }
