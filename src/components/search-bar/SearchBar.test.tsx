@@ -62,6 +62,6 @@ describe("SearchBar", () => {
 
   it("does not display any results count message when resultsCount is undefined", () => {
     renderContent(undefined);
-    expect(screen.getByRole("status")).not.toBeEmptyDOMElement();
+    expect(screen.getByRole("status")).toBeEmptyDOMElement();
   });
 });
