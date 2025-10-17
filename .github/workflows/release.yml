@@ -1,29 +1,65 @@
-name: Release
+name: Build & Release
 
 on:
   push:
     branches:
       - main
+
 jobs:
+  build:
+    name: Build Project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - run: npm run build # creates dist/
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
+
   release:
+    name: Release
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write
       pull-requests: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
-      - name: Release
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
+
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/**
+            src/**
+            package.json
+            package-lock.json
+            README.md
+            vite.config.ts
+            tsconfig.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
