@@ -23,7 +23,7 @@ describe("SearchBar", () => {
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole("button", { name: /Search Icon/i })
+      screen.getByRole("img", { name: /Search Icon/i })
     ).toBeInTheDocument();
   });
 

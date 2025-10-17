@@ -28,9 +28,9 @@ const SearchBar = ({ onChange, resultsCount }: SearchBarProps) => {
   return (
     <div className="search-bar" data-testid="search-bar">
       <form ref={formRef} onChange={handleChange}>
-        <button type="submit" className="search-bar__submit-button">
+        <div className="search-bar__magnifying-icon">
           <img src={searchIcon} alt="Search Icon" />
-        </button>
+        </div>
         <input
           name="query"
           type="text"
