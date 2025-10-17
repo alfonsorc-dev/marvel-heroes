@@ -1,4 +1,4 @@
-name: Release
+name: Build & Release
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
 
       - run: npm run build # creates dist/
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
