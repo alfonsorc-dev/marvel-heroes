@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.0.1](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.0.0...v1.0.1) (2025-10-17)
+
+
+### Bug Fixes
+
+* release only on pushes to main ([e031ea2](https://github.com/alfonsorc-dev/marvel-heroes/commit/e031ea2ebdaf7208690811767435c6437ba30b4a))
+* solve permissions issues ([a884221](https://github.com/alfonsorc-dev/marvel-heroes/commit/a88422184c63474e3492f95312dccde73a50f2b1))
+* use node version 22 in workflow ([9f5b01a](https://github.com/alfonsorc-dev/marvel-heroes/commit/9f5b01a5070046e6ad8df0ce19410849358005e6))
+
 # 1.0.0 (2025-10-17)
 
 
