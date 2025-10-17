@@ -50,7 +50,13 @@
         }
       ],
       "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md",
+          "changelogTitle": "# 📦 Changelog\n\nAll notable changes to this project will be documented in this file.\n"
+        }
+      ],
       [
         "@semantic-release/git",
         {
