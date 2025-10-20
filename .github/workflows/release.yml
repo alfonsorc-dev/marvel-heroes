@@ -6,9 +6,11 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build Project
+  build-and-release:
+    name: Build & Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -30,38 +32,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Upload dist/ artifact for deploy workflow
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/
-
-  release:
-    name: Release
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - run: npm ci
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-
       # Semantic-release handles versioning and GitHub release
-      - run: npx semantic-release
+      - name: Release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Re-upload dist artifact so it's available to the deploy workflow
+      # Upload dist/ artifact for deploy workflow
       - uses: actions/upload-artifact@v4
         with:
           name: dist
