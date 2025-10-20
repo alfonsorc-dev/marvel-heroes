@@ -1,4 +1,4 @@
-name: Build & Release
+name: build-and-release
 
 on:
   push:
@@ -16,9 +16,16 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm ci
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - run: npm run build
+      - name: Install dependencies
+        run: npm ci --prefer-offline
 
       # Upload dist/ artifact for deploy workflow
       - uses: actions/upload-artifact@v4

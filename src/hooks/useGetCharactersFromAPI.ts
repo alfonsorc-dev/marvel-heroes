@@ -13,7 +13,7 @@ export const useGetCharactersFromAPI = (
     "queryKey" | "queryFn"
   >
 ) => {
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = import.meta.env.VITE_MARVEL_API_KEY;
 
   const query = useQuery({
     queryKey: ["marvel-characters", nameStartsWith, limit],

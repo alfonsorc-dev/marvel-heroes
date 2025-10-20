@@ -1,8 +1,8 @@
-name: Deploy to Vercel
+name: deploy-to-vercel
 
 on:
   workflow_run:
-    workflows: ["Build & Release"]
+    workflows: ["build-and-release"]
     types:
       - completed
 
