@@ -38,8 +38,8 @@ jobs:
 
       - name: Prepare Vercel prebuilt output
         run: |
-          mkdir -p .vercel/output/public
-          cp -r dist/* .vercel/output/public/
+          mkdir -p .vercel/output/
+          cp -r dist/* .vercel/output/
 
       - name: Deploy to Vercel (production)
         if: github.event_name == 'push'
