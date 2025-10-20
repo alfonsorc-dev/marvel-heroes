@@ -18,8 +18,9 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build # creates dist/
+      - run: npm run build
 
+      # Upload dist/ artifact for deploy workflow
       - uses: actions/upload-artifact@v4
         with:
           name: dist
@@ -31,8 +32,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      issues: write
-      pull-requests: write
     steps:
       - uses: actions/checkout@v4
 
@@ -47,19 +46,7 @@ jobs:
           name: dist
           path: dist/
 
+      # Semantic-release handles versioning and GitHub release
       - run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            dist/**
-            src/**
-            package.json
-            package-lock.json
-            README.md
-            vite.config.ts
-            tsconfig.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
