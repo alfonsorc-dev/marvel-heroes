@@ -1,4 +1,4 @@
-name: Build & Release
+name: Release and Deploy
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  build-and-release:
-    name: Build & Release
+  release-and-deploy:
+    name: Release and Deploy
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,14 +32,15 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # Semantic-release handles versioning and GitHub release
       - name: Release
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Upload dist/ artifact for deploy workflow
-      - uses: actions/upload-artifact@v4
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
         with:
-          name: dist
-          path: dist/
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: dist
