@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.1.1](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.1.0...v1.1.1) (2025-10-20)
+
+
+### Bug Fixes
+
+* workflow changes ([e013cd9](https://github.com/alfonsorc-dev/marvel-heroes/commit/e013cd987cccab7167340d76cc4030f3e3e39894))
+
+# [1.1.0](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.0.1...v1.1.0) (2025-10-20)
+
+
+### Bug Fixes
+
+* deprecated version makes workflow fail ([0e867e9](https://github.com/alfonsorc-dev/marvel-heroes/commit/0e867e902abe9dfcdc09b3d810315d727c1a8fe5))
+* include dist folder in release ([344628c](https://github.com/alfonsorc-dev/marvel-heroes/commit/344628c72b528e014e39f8aad489267e059b4309))
+* prevent overflow in mobile ([f8e582d](https://github.com/alfonsorc-dev/marvel-heroes/commit/f8e582dcbca22ea4f9cfcd9e7dfef058e4579eaf))
+* release workflow action version ([05611c5](https://github.com/alfonsorc-dev/marvel-heroes/commit/05611c50570661cc40636fc79b42a278c9feeacd))
+* restore build job ([2e990ff](https://github.com/alfonsorc-dev/marvel-heroes/commit/2e990ff6027a6886e3a1ad536e8e03f65f7c83d9))
+
+
+### Features
+
+* add build workflow for prs ([e71a89c](https://github.com/alfonsorc-dev/marvel-heroes/commit/e71a89c594041702c9043c22f9d5edbde8c6429b))
+* add deployment action and other workflow changes ([70e0e06](https://github.com/alfonsorc-dev/marvel-heroes/commit/70e0e06c7d8a0a16a8c8a212d6cb857af1a4a363))
+* fix vitest-axe types configuration ([4e95242](https://github.com/alfonsorc-dev/marvel-heroes/commit/4e95242e879692c59615364208385df645fd8970))
+
 ## [1.0.1](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.0.0...v1.0.1) (2025-10-17)
 
 
