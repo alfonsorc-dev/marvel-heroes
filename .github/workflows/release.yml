@@ -60,3 +60,9 @@ jobs:
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Re-upload dist artifact so it's available to the deploy workflow
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
