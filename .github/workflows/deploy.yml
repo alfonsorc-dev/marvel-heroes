@@ -10,6 +10,7 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -17,6 +18,8 @@ jobs:
         with:
           name: dist
           path: dist/
+          repository: ${{ github.repository }}
+          run-id: ${{ github.event.workflow_run.id }}
 
       - uses: amondnet/vercel-action@v20
         with:
