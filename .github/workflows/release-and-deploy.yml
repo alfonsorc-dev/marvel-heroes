@@ -36,11 +36,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Prepare Vercel prebuilt output
-        run: |
-          mkdir -p .vercel/output/
-          cp -r dist/* .vercel/output/
-
       - name: Deploy to Vercel (production)
         if: github.event_name == 'push'
         uses: amondnet/vercel-action@v25
@@ -49,5 +44,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./.vercel/output
-          vercel-args: "--prebuilt --prod"
+          working-directory: ./dist
+          vercel-args: "--prod"
