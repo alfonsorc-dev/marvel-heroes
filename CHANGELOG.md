@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+## [1.1.1](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.1.0...v1.1.1) (2025-10-20)
+
+
+### Bug Fixes
+
+* workflow changes ([e013cd9](https://github.com/alfonsorc-dev/marvel-heroes/commit/e013cd987cccab7167340d76cc4030f3e3e39894))
+
 # [1.1.0](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.0.1...v1.1.0) (2025-10-20)
 
 
