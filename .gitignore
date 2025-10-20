@@ -33,3 +33,4 @@ dist-ssr
 
 # Coverage directory
 coverage/*
+.vercel
