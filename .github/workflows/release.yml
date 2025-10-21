@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build Project
     runs-on: ubuntu-latest
+    if: github.event.head_commit.author.name == 'alfonsorc-dev'
     steps:
       - uses: actions/checkout@v4
 
