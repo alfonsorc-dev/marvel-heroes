@@ -1,19 +1,19 @@
-export interface MarvelCharacterResponse {
+export interface MarvelCharacterResponse<T> {
   code: number;
   status: string;
   copyright: string;
   attributionText: string;
   attributionHTML: string;
   etag: string;
-  data: CharactersData;
+  data: T;
 }
 
-export interface CharactersData {
+export interface ResponseData<T> {
   offset: number;
   limit: number;
   total: number;
   count: number;
-  results: APICharacter[];
+  results: T;
 }
 
 export interface APICharacter {

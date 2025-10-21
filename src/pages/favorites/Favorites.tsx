@@ -1,33 +1,29 @@
 import SearchBar from "@/components/search-bar/SearchBar";
 import { DEBOUNCE_TIME } from "@/constants/search.const";
-import useFavorites from "@/context/FavoritesContext";
 import useDebounce from "@/hooks/useDebounce";
 import { useState, useMemo } from "react";
 import "@/styles/common.scss";
 import { CardsGrid } from "@/components/cards-grid/CardsGrid";
-import { CharacterCard } from "@/components/character-card/CharacterCard";
 import type { Character } from "@/models/Character";
 import { sortCharactersByName } from "@/utils/characters.utils";
 import "./Favorites.scss";
+import useFavorites from "@/hooks/useGetFavorites";
+import { ActionableCharacterCard } from "@/components/actionable-character-card/ActionableCharacterCard";
 
 export default function Favorites() {
   const [query, setQuery] = useState<string | null>(null);
   const debouncedQuery = useDebounce(query ?? "", DEBOUNCE_TIME);
 
-  const { favorites, removeFavorite } = useFavorites();
+  const { favorites } = useFavorites();
 
   const characters: Character[] = useMemo(() => {
     if (debouncedQuery) {
-      return favorites.filter((char) =>
-        char.name.toLowerCase().includes(debouncedQuery.toLowerCase())
+      return favorites.filter((character: Character) =>
+        character.name.toLowerCase().includes(debouncedQuery.toLowerCase())
       );
     }
     return sortCharactersByName(favorites);
   }, [debouncedQuery, favorites]);
-
-  const handleFavoriteToggle = (characterId: number) => {
-    removeFavorite(characterId);
-  };
 
   return (
     <main className="favorites">
@@ -45,12 +41,9 @@ export default function Favorites() {
         <CardsGrid>
           {characters.map((character) => {
             return (
-              <CharacterCard
+              <ActionableCharacterCard
                 key={character.id}
-                name={character.name}
-                thumbnail={character.thumbnail}
-                onFavoriteToggle={() => handleFavoriteToggle(character.id)}
-                isFavorite
+                character={character}
               />
             );
           })}
