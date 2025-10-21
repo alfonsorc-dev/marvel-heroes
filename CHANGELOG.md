@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+# [1.1.0](https://github.com/alfonsorc-dev/marvel-heroes/compare/v1.0.0...v1.1.0) (2025-10-21)
+
+
+### Features
+
+* banner mobile style fixes ([8c7586b](https://github.com/alfonsorc-dev/marvel-heroes/commit/8c7586b508cd3cca8471131593522625b5185b77))
+
 # 1.0.0 (2025-10-21)
 
 
