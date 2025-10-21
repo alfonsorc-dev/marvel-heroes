@@ -1,13 +1,12 @@
 import "./CharacterCard.scss";
-import filledHeart from "@/assets/filled-heart.svg";
-import outlinedHeart from "@/assets/outlined-heart.svg";
 import { ImageFormat } from "@/enums/image.enum";
+import { FavoriteButton } from "../favorite-button/FavoriteButton";
 
 export type CharacterCardProps = {
   name: string;
   thumbnail: { path: string; extension: string };
   isFavorite?: boolean;
-  onFavoriteToggle?: () => void;
+  onFavoriteToggle: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const CharacterCard = ({
@@ -32,12 +31,10 @@ export const CharacterCard = ({
       <div className="ruler"></div>
       <div className="character-card__info">
         <h2 className="character-name">{name.toUpperCase()}</h2>
-        <button className="unstyled-button" onClick={onFavoriteToggle}>
-          <img
-            src={isFavorite ? filledHeart : outlinedHeart}
-            alt={isFavorite ? "Filled Heart Icon" : "Outlined Heart icon"}
-          />
-        </button>
+        <FavoriteButton
+          style={isFavorite ? "filled" : "outlined"}
+          onClick={onFavoriteToggle}
+        />
       </div>
     </div>
   );

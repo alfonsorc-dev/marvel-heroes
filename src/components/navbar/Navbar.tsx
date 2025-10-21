@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "@/assets/marvel-logo.svg";
 import heartIcon from "@/assets/heart.svg";
 import "./Navbar.scss";
-import useFavorites from "@/context/FavoritesContext";
+import useFavorites from "@/hooks/useGetFavorites";
 
 function Navbar() {
   const { favorites } = useFavorites();

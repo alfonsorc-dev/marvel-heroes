@@ -27,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --prefer-offline
 
+      - name: Build project
+        run: npm run build
+
       # Upload dist/ artifact for deploy workflow
       - uses: actions/upload-artifact@v4
         with:
