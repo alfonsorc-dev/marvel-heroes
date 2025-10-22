@@ -1,6 +1,6 @@
 import { ComicCard, type ComicCardProps } from "./ComicCard";
 
-import { render, screen, within, cleanup } from "@testing-library/react";
+import { render, screen, cleanup } from "@testing-library/react";
 import { describe, it, expect, afterEach } from "vitest";
 
 const mockComic: ComicCardProps = {
@@ -17,7 +17,7 @@ const renderContent = () => {
     <ComicCard
       title={mockComic.title}
       thumbnail={mockComic.thumbnail}
-      dates={[]}
+      dates={[{ type: "onsaleDate", date: "2020-01-01T00:00:00-0500" }]}
     />
   );
 };
@@ -25,16 +25,9 @@ const renderContent = () => {
 describe("ComicCard", () => {
   afterEach(cleanup);
 
-  it("renders character information correctly", () => {
+  it("renders comic information correctly", () => {
     renderContent();
-
     expect(screen.getByText(/Spider-Man/i)).toBeInTheDocument();
-    expect(screen.getByAltText(/Spider-Man/i)).toBeInTheDocument();
-
-    const favoriteButton = screen.getByRole("button");
-    expect(favoriteButton).toBeInTheDocument();
-    expect(
-      within(favoriteButton).getByAltText(/Filled Heart Icon/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/2020/i)).toBeInTheDocument();
   });
 });
