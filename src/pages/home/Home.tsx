@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <main className="home">
-      <section role="search" className="home__fixed-content">
+      <section role="search" className="home__search-bar">
         <SearchBar
           resultsCount={isLoading ? undefined : characters.length}
           onChange={(value) => setQuery(value ?? "")}

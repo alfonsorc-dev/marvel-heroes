@@ -1,7 +1,7 @@
 @use "@/styles/variables" as *;
 
 .home {
-  &__fixed-content {
+  &__search-bar {
     position: fixed;
     padding: 48px 48px 0 48px;
     z-index: 1000;
@@ -9,7 +9,7 @@
     background: white;
     width: 100%;
 
-    @media (max-width: 640px) {
+    @media (max-width: $breakpoint-xs) {
       padding-top: 24px;
     }
   }
@@ -17,7 +17,7 @@
     margin-top: calc(
       $navbar-height + $home-fixed-content-height + $page-vertical-gap
     );
-    @media (max-width: 640px) {
+    @media (max-width: $breakpoint-xs) {
       margin-top: calc(
         $navbar-height + $home-fixed-content-height-mobile + $page-vertical-gap
       );

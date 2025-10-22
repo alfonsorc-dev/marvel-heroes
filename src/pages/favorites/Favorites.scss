@@ -1,7 +1,26 @@
 @use "@/styles/variables" as *;
 
 .favorites {
-  &__fixed-content {
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__characters-grid {
+    margin-top: calc(
+      $navbar-height + $favorites-fixed-content-height + $page-vertical-gap
+    );
+    @media (max-width: $breakpoint-xs) {
+      margin-top: calc(
+        $navbar-height + $favorites-fixed-content-height-mobile +
+          $page-vertical-gap
+      );
+    }
+  }
+
+  &__fixed-header {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -12,27 +31,8 @@
     background: white;
     width: 100%;
 
-    .title {
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0;
-      padding: 0;
-    }
-
-    @media (max-width: 640px) {
+    @media (max-width: $breakpoint-xs) {
       padding-top: 24px;
-    }
-  }
-
-  &__characters-grid {
-    margin-top: calc(
-      $navbar-height + $favorites-fixed-content-height + $page-vertical-gap
-    );
-    @media (max-width: 640px) {
-      margin-top: calc(
-        $navbar-height + $favorites-fixed-content-height-mobile +
-          $page-vertical-gap
-      );
     }
   }
 }

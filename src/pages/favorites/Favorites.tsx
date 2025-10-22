@@ -27,8 +27,8 @@ export default function Favorites() {
 
   return (
     <main className="favorites">
-      <div className="favorites__fixed-content">
-        <h2 className="title">FAVORITES</h2>
+      <div className="favorites__fixed-header">
+        <h2 className="favorites__title">FAVORITES</h2>
         <section role="search">
           <SearchBar resultsCount={characters.length} onChange={setQuery} />
         </section>
