@@ -1,27 +1,11 @@
 @use "@/styles/variables" as *;
 
 .favorites {
-  &__fixed-content {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    position: fixed;
-    padding: 48px 48px 0 48px;
-    z-index: 1000;
-    top: $navbar-height;
-    background: white;
-    width: 100%;
-
-    .title {
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0;
-      padding: 0;
-    }
-
-    @media (max-width: $breakpoint-xs) {
-      padding-top: 24px;
-    }
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
   }
 
   &__characters-grid {
@@ -33,6 +17,22 @@
         $navbar-height + $favorites-fixed-content-height-mobile +
           $page-vertical-gap
       );
+    }
+  }
+
+  &__fixed-header {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: fixed;
+    padding: 48px 48px 0 48px;
+    z-index: 1000;
+    top: $navbar-height;
+    background: white;
+    width: 100%;
+
+    @media (max-width: $breakpoint-xs) {
+      padding-top: 24px;
     }
   }
 }

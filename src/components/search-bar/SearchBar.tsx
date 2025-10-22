@@ -1,6 +1,7 @@
 import { useMemo, useRef } from "react";
 import "./SearchBar.scss";
 import searchIcon from "@/assets/magnifying-glass.svg";
+import { Literals } from "@/constants/literals.enum";
 
 export type SearchBarProps = {
   resultsCount: number | undefined;
@@ -22,6 +23,7 @@ const SearchBar = ({ onChange, resultsCount }: SearchBarProps) => {
 
   const resultsCountMsg: string | undefined = useMemo(() => {
     if (resultsCount === undefined) return;
+    // TODO: replace this with proper i18n solution in the future
     return `${resultsCount ?? 0} result${resultsCount === 1 ? "" : "s"} found`;
   }, [resultsCount]);
 
@@ -34,7 +36,7 @@ const SearchBar = ({ onChange, resultsCount }: SearchBarProps) => {
         <input
           name="query"
           type="text"
-          placeholder="SEARCH A CHARACTER..."
+          placeholder={Literals.SearchPlaceholder}
           className="search-bar__input"
           aria-label="Search input"
         ></input>

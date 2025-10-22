@@ -1,4 +1,6 @@
 export enum ImageFormat {
-  CARD_IMAGE_BIG = "standard_xlarge",
-  CARD_IMAGE_STANDARD = "standard_amazing",
+  BIG = "standard_xlarge",
+  STANDARD = "standard_amazing",
+  PORTRAIT_FANTASTIC = "portrait_fantastic",
+  STANDARD_FANTASTIC = "standard_fantastic",
 }

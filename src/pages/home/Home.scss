@@ -1,7 +1,7 @@
 @use "@/styles/variables" as *;
 
 .home {
-  &__fixed-content {
+  &__search-bar {
     position: fixed;
     padding: 48px 48px 0 48px;
     z-index: 1000;
