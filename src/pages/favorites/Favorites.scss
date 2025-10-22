@@ -19,7 +19,7 @@
       padding: 0;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: $breakpoint-xs) {
       padding-top: 24px;
     }
   }
@@ -28,7 +28,7 @@
     margin-top: calc(
       $navbar-height + $favorites-fixed-content-height + $page-vertical-gap
     );
-    @media (max-width: 640px) {
+    @media (max-width: $breakpoint-xs) {
       margin-top: calc(
         $navbar-height + $favorites-fixed-content-height-mobile +
           $page-vertical-gap
