@@ -36,19 +36,17 @@ export const CharacterBanner = ({
 
   return (
     <div className="character-banner">
-      <div className="container">
-        <img src={imageUrl} alt={name} className="character-banner__image" />
-        <div className="character-banner__info">
-          <div className="header">
-            <h1>{name}</h1>
-            <FavoriteButton
-              style={isFavorite ? "filled" : "outlined"}
-              size={{ height: 24, width: 24 }}
-              onClick={handleFavoriteToggle}
-            />
-          </div>
-          <p className="description">{description}</p>
+      <img src={imageUrl} alt={name} className="character-banner__image" />
+      <div className="character-banner__info">
+        <div className="header">
+          <h1>{name}</h1>
+          <FavoriteButton
+            style={isFavorite ? "filled" : "outlined"}
+            size={{ height: 24, width: 24 }}
+            onClick={handleFavoriteToggle}
+          />
         </div>
+        <p className="description">{description}</p>
       </div>
     </div>
   );

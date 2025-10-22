@@ -1,9 +1,6 @@
 import { MARVEL_API_BASE_URL } from "@/constants/api.const";
-import type {
-  APICharacter,
-  MarvelCharacterResponse,
-  ResponseData,
-} from "@/models/api/GetCharactersResponse.model";
+import type { APICharacter } from "@/models/api/CharacterAPI.model";
+import type { APIResponse, ResponseData } from "@/models/api/CommonAPI.model";
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
 interface UseMarvelCharactersOptions {
   limit?: number;
@@ -13,7 +10,7 @@ interface UseMarvelCharactersOptions {
 export const useGetCharacters = (
   { limit, nameStartsWith }: UseMarvelCharactersOptions,
   queryOptions?: Omit<
-    UseQueryOptions<MarvelCharacterResponse<ResponseData<APICharacter[]>>>,
+    UseQueryOptions<APIResponse<ResponseData<APICharacter[]>>>,
     "queryKey" | "queryFn"
   >
 ) => {
@@ -21,9 +18,7 @@ export const useGetCharacters = (
 
   const query = useQuery({
     queryKey: ["marvel-characters", nameStartsWith, limit],
-    queryFn: async (): Promise<
-      MarvelCharacterResponse<ResponseData<APICharacter[]>>
-    > => {
+    queryFn: async (): Promise<APIResponse<ResponseData<APICharacter[]>>> => {
       const url = new URL(`${MARVEL_API_BASE_URL}/characters`);
       url.searchParams.append("apikey", apiKey);
       if (nameStartsWith) {
@@ -45,7 +40,7 @@ export const useGetCharacters = (
 
   return {
     query,
-    data: query.data?.data ?? [],
+    data: query.data?.data,
     isLoading: query.isLoading,
   };
 };

@@ -1,6 +1,6 @@
+import type { APICharacter } from "@/models/api/CharacterAPI.model";
 import { apiCharacterToCharacter } from "./character.adapter";
 
-import type { APICharacter } from "@/models/api/GetCharactersResponse.model";
 import type { Character } from "@/models/Character";
 import { describe, expect, it } from "vitest";
 
@@ -48,7 +48,7 @@ describe("character.adapter", () => {
       const expectedCharacter: Character = {
         id: 1011334,
         name: "3-D Man",
-        thumbnail: { path: "http://example.com/image", extension: "jpg" },
+        thumbnail: { path: "https://example.com/image", extension: "jpg" },
       };
 
       const result = apiCharacterToCharacter(apiCharacter);

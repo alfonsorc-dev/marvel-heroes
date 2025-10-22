@@ -1,0 +1,25 @@
+@use "@/styles/variables" as *;
+
+.comic-card {
+  width: 180px;
+
+  @media (max-width: $breakpoint-md) {
+    width: 168px;
+  }
+  @media (max-width: $breakpoint-sm) {
+    width: 164px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 16px;
+      font-weight: 500;
+      white-space: normal;
+      word-break: break-word;
+      width: 100%;
+    }
+  }
+}
