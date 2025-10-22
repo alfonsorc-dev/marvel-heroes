@@ -3,11 +3,7 @@
 .character-card {
   min-height: 245px;
   width: 200px;
-  &__image {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+
   &__info {
     padding: 16px;
     display: flex;
