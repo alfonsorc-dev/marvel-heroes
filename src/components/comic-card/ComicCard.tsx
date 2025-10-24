@@ -2,6 +2,7 @@ import type { Comic } from "@/models/api/ComicAPI.model";
 import "./ComicCard.scss";
 import { useMemo } from "react";
 import { ImageFormat } from "@/enums/image.enum";
+import { CardWithSpinner } from "../with-spinner/WithSpinner";
 
 export type ComicCardProps = Pick<Comic, "title" | "thumbnail"> & {
   dates: Comic["dates"];
@@ -19,15 +20,25 @@ export const ComicCard = ({
 
   return (
     <div className="comic-card">
-      <img
-        src={`${path}/${ImageFormat.PORTRAIT_FANTASTIC}.${extension}`}
-        alt={title}
+      <CardWithSpinner
+        renderContent={(isLoading, onLoad) => (
+          <>
+            <img
+              loading="lazy"
+              src={`${path}/${ImageFormat.PORTRAIT_FANTASTIC}.${extension}`}
+              alt={title}
+              onLoad={onLoad}
+              style={isLoading ? { visibility: "hidden" } : {}}
+            />
+            {!isLoading && (
+              <div className="comic-card__info">
+                <h2>{title}</h2>
+                <p>{year}</p>
+              </div>
+            )}
+          </>
+        )}
       />
-
-      <div className="comic-card__info">
-        <h2>{title}</h2>
-        <p>{year}</p>
-      </div>
     </div>
   );
 };

@@ -7,12 +7,15 @@ import useGetCharacterComics from "@/hooks/api/useGetCharacterComics";
 import { useMemo } from "react";
 import { apiCharacterToCharacter } from "@/adapters/character.adapter";
 import { ComicCard } from "@/components/comic-card/ComicCard";
+import { Loading } from "../loading/Loading";
 
 export default function Details() {
   const { id } = useParams();
-  const { data } = useGetCharacterById(id ?? "");
+  const { data, isLoading: isLoadingCharacter } = useGetCharacterById(id ?? "");
 
-  const { data: comics, isLoading } = useGetCharacterComics(id ?? "");
+  const { data: comics, isLoading: isLoadingComics } = useGetCharacterComics(
+    id ?? ""
+  );
 
   const character = useMemo(
     () =>
@@ -22,8 +25,11 @@ export default function Details() {
     [data]
   );
 
-  if (!character) return <div>No character found</div>; // TODO: add styles
-  if (isLoading) return <div>Loading comics...</div>; // TODO: add loader
+  if (isLoadingCharacter || isLoadingComics)
+    return <Loading message={Literals.LoadingHeroes} />;
+
+  if (!character)
+    return <div className="details__error">Character not found.</div>;
 
   return (
     <div className="details">
@@ -39,7 +45,9 @@ export default function Details() {
       </div>
       <div className="details__content">
         <h2>{Literals.Comics}</h2>
-        <div className="carousel">
+        <div
+          className={`carousel ${isLoadingComics ? "carousel--loading" : ""}`}
+        >
           {comics?.results.map((comic) => (
             <ComicCard
               key={comic.id}

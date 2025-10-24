@@ -3,4 +3,5 @@
 export enum Literals {
   Comics = "Comics",
   SearchPlaceholder = "SEARCH A CHARACTER...",
+  LoadingHeroes = "Loading heroes data...",
 }
