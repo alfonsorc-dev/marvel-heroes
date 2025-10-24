@@ -1,0 +1,11 @@
+@use "@/styles/variables" as *;
+
+.loading-page {
+  height: calc(100vh - $navbar-height);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}

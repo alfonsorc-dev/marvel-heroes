@@ -9,6 +9,8 @@ import type { Character } from "@/models/Character";
 import "./Home.scss";
 import { ActionableCharacterCard } from "@/components/actionable-character-card/ActionableCharacterCard";
 import useGetCharacters from "@/hooks/api/useGetCharacters";
+import { Loading } from "../loading/Loading";
+import { Literals } from "@/constants/literals.enum";
 
 export default function Home() {
   const [query, setQuery] = useState<string>("");
@@ -35,13 +37,20 @@ export default function Home() {
           onChange={(value) => setQuery(value ?? "")}
         />
       </section>
-      <section aria-label="Characters List" className="home__characters-grid">
-        <CardsGrid>
-          {characters.map((character) => (
-            <ActionableCharacterCard key={character.id} character={character} />
-          ))}
-        </CardsGrid>
-      </section>
+      {isLoading ? (
+        <Loading message={Literals.LoadingHeroes} />
+      ) : (
+        <section aria-label="Characters List" className="home__characters-grid">
+          <CardsGrid>
+            {characters.map((character) => (
+              <ActionableCharacterCard
+                key={character.id}
+                character={character}
+              />
+            ))}
+          </CardsGrid>
+        </section>
+      )}
     </main>
   );
 }
