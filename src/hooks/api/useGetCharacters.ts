@@ -39,7 +39,6 @@ export const useGetCharacters = (
   });
 
   return {
-    query,
     data: query.data?.data,
     isLoading: query.isLoading,
   };
